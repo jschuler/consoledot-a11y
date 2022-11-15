@@ -1,0 +1,39 @@
+{
+  "name": "consoledot-a11y",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/jschuler/consoledot-a11y.git",
+  "author": "Joachim Schuler <jdh.schuler@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@axe-core/playwright": "^4.5.1",
+    "@playwright/test": "^1.27.1",
+    "@types/react": "^18.0.25",
+    "@types/react-dom": "^18.0.9",
+    "clean-webpack-plugin": "^4.0.0",
+    "copy-webpack-plugin": "^11.0.0",
+    "css-loader": "^6.7.2",
+    "file-loader": "^6.2.0",
+    "html-webpack-plugin": "^5.5.0",
+    "mini-css-extract-plugin": "^2.6.1",
+    "ts-loader": "^9.4.1",
+    "typescript": "^4.9.3",
+    "url-loader": "^4.1.1",
+    "webpack": "^5.75.0",
+    "webpack-cli": "^4.10.0"
+  },
+  "scripts": {
+    "start": "webpack-dev-server --open",
+    "build": "webpack --mode production",
+    "pw": "yarn playwright test",
+    "pw:debug": "PWDEBUG=console yarn playwright test",
+    "pw:copy": "rm -rf static && mkdir -p static && cp -R screenshots static && cp results.json static/results.json"
+  },
+  "dependencies": {
+    "@patternfly/react-charts": "^6.94.11",
+    "@patternfly/react-core": "^4.250.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "webpack-dev-server": "^4.11.1"
+  }
+}
