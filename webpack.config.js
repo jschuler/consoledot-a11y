@@ -1,51 +1,54 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const CopyPlugin = require('copy-webpack-plugin');
+const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 module.exports = {
-  entry: path.resolve(__dirname + '/src/index.tsx'),
+  entry: path.resolve(__dirname + "/src/index.tsx"),
   // devtool: 'eval-cheap-source-map',
-  devtool: 'eval-source-map',
-  mode: 'development',
+  devtool: "eval-source-map",
+  mode: "development",
   output: {
-    path: path.resolve(__dirname + '/dist'),
-    filename: 'bundle.js'
+    path: path.resolve(__dirname + "/dist"),
+    filename: "bundle.js",
   },
   resolve: {
-    extensions: ['.js', '.jsx', '.ts', '.tsx'],
+    extensions: [".js", ".jsx", ".ts", ".tsx"],
   },
   devServer: {
     historyApiFallback: true,
     static: {
-      directory: path.resolve(__dirname, 'static'),
+      directory: path.resolve(__dirname, "static"),
     },
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: __dirname + '/src/index.html'
+      template: __dirname + "/src/index.html",
     }),
     new MiniCssExtractPlugin(),
-    new CleanWebpackPlugin()
+    new CleanWebpackPlugin(),
+    new CopyWebpackPlugin({
+      patterns: [{ from: "static" }],
+    }),
   ],
   module: {
     rules: [
-      { test: /\.tsx?$/, loader: 'ts-loader' },
+      { test: /\.tsx?$/, loader: "ts-loader" },
       {
         test: /\.css$/,
         use: [
           {
             loader: MiniCssExtractPlugin.loader,
           },
-          'css-loader',
+          "css-loader",
         ],
       },
       {
         test: /\.(png|jpe?g|gif|svg)$/i,
         use: [
           {
-            loader: 'url-loader',
+            loader: "url-loader",
             options: {
               limit: 8192,
             },
@@ -56,14 +59,14 @@ module.exports = {
         test: /\.(woff(2)?|ttf|eot)(\?v=\d+\.\d+\.\d+)?$/,
         use: [
           {
-            loader: 'file-loader',
+            loader: "file-loader",
             options: {
-              name: '[name].[ext]',
-              outputPath: 'fonts/'
-            }
-          }
-        ]
-      }
-    ]
-  }
-}
+              name: "[name].[ext]",
+              outputPath: "fonts/",
+            },
+          },
+        ],
+      },
+    ],
+  },
+};
