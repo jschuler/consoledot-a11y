@@ -6,8 +6,8 @@
   "author": "Joachim Schuler <jdh.schuler@gmail.com>",
   "license": "MIT",
   "devDependencies": {
-    "@axe-core/playwright": "^4.5.1",
-    "@playwright/test": "^1.27.1",
+    "@axe-core/playwright": "^4.7.3",
+    "@playwright/test": "^1.35.0",
     "@types/react": "^18.0.25",
     "@types/react-dom": "^18.0.9",
     "clean-webpack-plugin": "^4.0.0",
@@ -16,6 +16,7 @@
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.5.0",
     "mini-css-extract-plugin": "^2.6.1",
+    "playwright-core": "^1.35.0",
     "ts-loader": "^9.4.1",
     "typescript": "^4.9.3",
     "url-loader": "^4.1.1",
@@ -23,13 +24,15 @@
     "webpack-cli": "^4.10.0"
   },
   "scripts": {
-    "start": "webpack-dev-server --open",
-    "build": "webpack --mode production",
-    "pw": "yarn playwright test",
-    "pw:debug": "PWDEBUG=console yarn playwright test",
-    "pw:copy": "rm -rf static && mkdir -p static && cp -R screenshots static && cp results.json static/results.json"
+    "start": "yarn test:copy && webpack-dev-server --config ./report/webpack.config.js --open",
+    "build": "webpack --config ./report/webpack.config.js --mode production",
+    "clean": "rm -rf dist && rm -rf axe && rm -rf playwright-report && rm -rf screenshots && rm -rf static && rm -rf test-results && rm -f results.json && rm -f state.json",
+    "test": "yarn clean && yarn playwright test",
+    "test:debug": "yarn clean && PWDEBUG=console yarn playwright test",
+    "test:copy": "rm -rf static && mkdir -p static && cp -R screenshots static && cp results.json static/results.json"
   },
   "dependencies": {
+    "@breakaway/patternfly-a11y-report": "^0.0.4",
     "@patternfly/react-charts": "^6.94.11",
     "@patternfly/react-core": "^4.250.1",
     "react": "^18.2.0",

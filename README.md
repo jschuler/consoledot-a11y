@@ -1,3 +1,30 @@
+# a11y testing console.redhat.com
+
+## View
+Netlify builds this repo on-demand and uploads the report to:
+https://consoledot-a11y.netlify.app/
+
+## Install dependencies
+```
+yarn
+```
+
+## Start tests
+```
+yarn test
+```
+or to not run headless
+```
+yarn test:debug
+```
+
+## Run report
+```
+yarn start
+```
+
+## Playwright commands
+
 You can run several commands:
 
   yarn playwright test

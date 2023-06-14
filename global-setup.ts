@@ -1,7 +1,7 @@
 // global-setup.ts
 import { chromium, FullConfig } from "@playwright/test";
 
-const stuff = {
+const creds = {
   user: process.env.SSO_USERNAME,
   pass: process.env.SSO_PASSWORD,
 };
@@ -19,11 +19,11 @@ async function globalSetup(config: FullConfig) {
   }
 
   await page.waitForSelector("#username-verification");
-  await page.type("#username-verification", stuff.user);
+  await page.type("#username-verification", creds.user);
   await page.click("#login-show-step2");
 
   await page.waitForSelector("#password");
-  await page.type("#password", stuff.pass);
+  await page.type("#password", creds.pass);
   await page.click("#rh-password-verification-submit-button");
   await page.waitForNavigation();
 
