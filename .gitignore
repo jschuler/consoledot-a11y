@@ -4,7 +4,7 @@ node_modules/
 /playwright/.cache/
 /axe
 /screenshots
-/dist
-/static
+dist
+static
 results.json
 state.json

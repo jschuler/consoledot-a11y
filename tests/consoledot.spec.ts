@@ -71,7 +71,7 @@ const allUrls = [...urls];
 
 test.describe("a11y testing", () => {
   for (var index = 0; index < allUrls.length; index++) {
-    const entry = allUrls[index];
+    const entry: any = allUrls[index];
     let url;
     let onLoad;
     let prefix = defaultPrefix;
