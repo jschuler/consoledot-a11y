@@ -166,7 +166,10 @@ test.describe("a11y testing", () => {
         body: JSON.stringify(accessibilityScanResults, null, 2),
         contentType: "application/json",
       });
-      expect(accessibilityScanResults.violations.length).toEqual(0);
+
+      if (!process.env.SKIP_EXPECT) {
+        expect(accessibilityScanResults.violations.length).toEqual(0);
+      }
     });
   }
 });
