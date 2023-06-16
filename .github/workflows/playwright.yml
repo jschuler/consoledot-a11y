@@ -21,9 +21,8 @@ jobs:
       env:
         SSO_USERNAME: ${{ secrets.SSO_USERNAME }}
         SSO_PASSWORD: ${{ secrets.SSO_PASSWORD }}
+        SKIP_EXPECT: ${{ secrets.SKIP_EXPECT }}
       run: yarn playwright test
-    - name: Copy files to static folder
-      run: yarn pw:copy
     - name: Build report
       run: yarn build
     - uses: actions/upload-artifact@v3
